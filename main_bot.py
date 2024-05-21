@@ -31,6 +31,16 @@ async def on_message_edit(before, after):
     msg = f'**{before.author}** Baru saja mengubah teks menjadi:\n{before.content} :arrow_right: {after.content} :face_with_monocle:'
     await before.channel.send(msg)
 
+@bot.event #kode ini saya temukan dari pencarian
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send(":question: Perintah tidak ada, ketik ($list) atau ($help) untuk informasi lebih lanjut. :question:")
+
+@bot.command()
+async def list(ctx):
+    await ctx.send('List perintah ($):')
+    await ctx.send('hapus, hello, heh, passgen, pangkat')
+
 @bot.command() #ini kurang berguna sih, agak sampah, tapi buat sekarang tidak dihapus karena ada kemungkinan untuk diperbaiki nanti.
 async def hapus(ctx):
     msg = await ctx.send('oke, akan dihapus...')
